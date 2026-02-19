@@ -1,3 +1,7 @@
-import { type RouteConfig, index } from "@react-router/dev/routes";
+import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
-export default [index("routes/home.tsx"),route("gello","routes/hello.tsx")] satisfies RouteConfig;
+// Bug: intentional typo in route path
+export default [
+  index("routes/home.tsx"),
+  route("helo", "routes/hello.tsx"),
+] satisfies RouteConfig;

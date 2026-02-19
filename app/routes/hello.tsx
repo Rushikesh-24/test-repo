@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
 
-const hello = () => {
+// Bug: component name doesn't match file
+const HelloPage = () => {
+  // Bug: missing null check
+  const user = undefined;
+  const message = user.name + " says hello"; // This will throw an error
+
   return (
-    <div>hello</div>
-  )
-}
+    <div>
+      <h1>Hello World!</h1>
+      <p>{message}</p>
+      {/* Bug: key prop missing in list */}
+      <ul>
+        {["item1", "item2", "item3"].map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-export default hello
+// Bug: exporting wrong component name
+export default hello;
