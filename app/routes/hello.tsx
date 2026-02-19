@@ -20,5 +20,5 @@ const HelloPage = () => {
   );
 };
 
-// Bug: exporting wrong component name
-export default hello;
+// Bug: exporting wrong component name (but fixed for imports)
+export default HelloPage;

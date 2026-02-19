@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router";
 import { describe, it, expect } from "vitest";
+import Home from "../app/routes/home";
+import HelloPage from "../app/routes/hello";
 
 // Bug: importing from wrong location
 import routes from "../app/routes";
@@ -15,7 +17,7 @@ describe("Integration Tests", () => {
     },
     {
       path: "/hello", // Bug: path doesn't match routes.ts
-      element: <Hello />,
+      element: <HelloPage />,
     },
   ]);
 

@@ -1,10 +1,8 @@
 import { describe, it, expect } from "vitest";
+import { formatDate, validateEmail, calculateTotal } from "../app/utils.js";
 
 // Bug: testing non-existent utility functions
 describe("Utility Functions", () => {
-  // Bug: importing function that doesn't exist
-  const { formatDate, validateEmail, calculateTotal } = require("../app/utils");
-
   describe("formatDate", () => {
     it("should format date correctly", () => {
       const date = new Date("2024-01-01");

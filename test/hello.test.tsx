@@ -1,9 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import Hello from "../app/routes/hello";
-
-// Bug: importing wrong component name that doesn't exist
-import { HelloPage } from "../app/routes/hello";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import HelloPage from "../app/routes/hello";
 
 describe("Hello Component", () => {
   // Bug: using console.error but not properly mocking it
@@ -16,20 +13,20 @@ describe("Hello Component", () => {
 
   it("should render hello message", () => {
     // Bug: This will fail due to the null reference error in the component
-    expect(() => render(<Hello />)).not.toThrow();
+    expect(() => render(<HelloPage />)).not.toThrow();
 
     expect(screen.getByText("Hello World!")).toBeInTheDocument();
   });
 
   it("should display user message", () => {
-    render(<Hello />);
+    render(<HelloPage />);
 
     // Bug: This test expects text that will cause an error
     expect(screen.getByText(/says hello/)).toBeInTheDocument();
   });
 
   it("should render list items", () => {
-    render(<Hello />);
+    render(<HelloPage />);
 
     // Bug: expecting 4 items but component only has 3
     const items = screen.getAllByRole("listitem");
@@ -38,7 +35,7 @@ describe("Hello Component", () => {
 
   // Bug: test name doesn't match what it's testing
   it("should handle async operations", () => {
-    render(<Hello />);
+    render(<HelloPage />);
 
     // Bug: testing synchronous content in async test
     expect(screen.getByRole("heading")).toHaveTextContent("Hello World!");

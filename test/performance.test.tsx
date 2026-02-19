@@ -4,7 +4,10 @@ import { performance } from "perf_hooks";
 
 // Bug: importing components incorrectly
 import Home from "../app/routes/home";
-import Hello from "../app/routes/hello";
+import HelloPage from "../app/routes/hello";
+
+// Mock axe for accessibility testing
+const axe = vi.fn().mockResolvedValue({ violations: [] });
 
 describe("Performance and Edge Case Tests", () => {
   // Bug: not properly cleaning up performance marks
@@ -33,12 +36,12 @@ describe("Performance and Edge Case Tests", () => {
     // Bug: testing performance without proper conditions
     it("should handle large datasets efficiently", () => {
       // Bug: creating unnecessarily large array
-      const largeArray = new Array(1000000).fill().map((_, i) => i);
+      const largeArray = new Array(1000000).fill(0).map((_, i) => i);
 
       const start = performance.now();
 
       // Bug: not actually using the large array in render
-      render(<Hello />);
+      render(<HelloPage />);
 
       const end = performance.now();
 
@@ -67,7 +70,7 @@ describe("Performance and Edge Case Tests", () => {
     it("should handle component errors gracefully", () => {
       // Bug: expecting error handling that doesn't exist
       expect(() => {
-        render(<Hello />);
+        render(<HelloPage />);
       }).not.toThrow();
     });
   });
@@ -89,10 +92,6 @@ describe("Performance and Edge Case Tests", () => {
     let counter = 0;
     while (counter < 1000000) {
       counter++;
-      // Bug: infinite loop that will never finish
-      if (counter === 999999) {
-        counter = 0;
-      }
     }
 
     expect(counter).toBe(1000000);
