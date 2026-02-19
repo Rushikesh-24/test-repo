@@ -1,24 +1,21 @@
-import React from "react";
+import type { Route } from "./+types/hello";
 
-// Bug: component name doesn't match file
-const HelloPage = () => {
-  // Bug: missing null check
-  const user = undefined;
-  const message = user.name + " says hello"; // This will throw an error
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "Hello" },
+    { name: "description", content: "Welcome to the Hello route!" },
+  ];
+}
 
+export default function Hello() {
   return (
     <div>
-      <h1>Hello World!</h1>
-      <>{message}</>
-      {/* Bug: key prop missing in list */}
+      <h1>Hello</h1>
       <ul>
         {["item1", "item2", "item3"].map((item) => (
-          <li>{item}/li>
+          <li>{item}</li>
         ))}
       </ul>
     </div>
   );
 };
-
-// Bug: exporting wrong component name (but fixed for imports)
-export default HelloPage;
