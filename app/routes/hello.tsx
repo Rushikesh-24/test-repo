@@ -9,11 +9,11 @@ const HelloPage = () => {
   return (
     <div>
       <h1>Hello World!</h1>
-      <p>{message}</p>
+      <>{message}</>
       {/* Bug: key prop missing in list */}
       <ul>
         {["item1", "item2", "item3"].map((item) => (
-          <li>{item}</li>
+          <li>{item}/li>
         ))}
       </ul>
     </div>
